@@ -1,9 +1,49 @@
+<!-- templates/registration/login.html -->
 {% extends "base.html" %}
 
+{% block title %}Đăng nhập | Hien Cao Portfolio{% endblock title %}
+
 {% block content %}
-<h2>Log In</h2>
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Log In</button>
-</form>
+<div class="container">
+  <div class="auth-container">
+    <div class="form-card">
+      <div class="form-card__header">
+        <div class="form-card__icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <h2 class="form-card__title">Đăng nhập tài khoản</h2>
+        <p class="form-card__subtitle">
+          Vui lòng đăng nhập để vào trang giới thiệu cá nhân hoá và quản trị bài viết blog.
+        </p>
+      </div>
+
+      <form method="post" class="django-form">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+          <div class="errorlist">
+            Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng thử lại.
+          </div>
+        {% endif %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn--primary btn--lg" style="width: 100%; margin-top: 1rem;">
+          Đăng nhập ngay
+        </button>
+      </form>
+
+      <div class="form-card__footer">
+        Chưa có tài khoản? 
+        <a href="{% url 'signup' %}" style="font-weight: 600;">Đăng ký tài khoản mới</a>
+        <br><br>
+        <a href="{% url 'home' %}" class="btn btn--outline btn--sm">
+          &larr; Quay lại Trang chủ
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

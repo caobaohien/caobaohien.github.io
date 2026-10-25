@@ -1,10 +1,43 @@
-<!-- templates/post_delete -->
+<!-- templates/post_delete.html -->
 {% extends "base.html" %}
 
+{% block title %}Xóa bài viết | Hien Cao Blog{% endblock title %}
+
 {% block content %}
-<h1>Delete post</h1>
-<form action="" method="post">{% csrf_token %}
-   <p>Are you sure you want to delete "{{ post.title }}"?</p>
-   <input type="submit" value="Confirm">
-</form>
+<div class="container">
+  <div class="auth-container">
+    <div class="form-card" style="border-top: 4px solid #e53e3e;">
+      <div class="form-card__header">
+        <div class="form-card__icon" style="background: rgba(229, 62, 62, 0.12); color: #e53e3e;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <h2 class="form-card__title">Xác nhận xóa bài viết</h2>
+        <p class="form-card__subtitle">
+          Hành động này sẽ xóa vĩnh viễn bài viết khỏi hệ thống và không thể phục hồi.
+        </p>
+      </div>
+
+      <div style="background-color: var(--bg-subtle); padding: 1.25rem; border-radius: var(--radius-md); border-left: 3px solid #e53e3e; margin-bottom: 2rem;">
+        <span style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Tiêu đề bài viết:</span>
+        <strong style="font-size: 1.15rem; color: var(--text-primary);">"{{ post.title }}"</strong>
+      </div>
+
+      <form action="" method="post">
+        {% csrf_token %}
+        <div style="display: flex; gap: 1rem;">
+          <button type="submit" class="btn btn--danger btn--lg" style="flex: 1;">
+            Xác nhận xóa
+          </button>
+          <a href="{% url 'post_detail' post.pk %}" class="btn btn--outline btn--lg">
+            Hủy bỏ
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock content %}

@@ -1,10 +1,39 @@
-<!-- templates/post_edit -->
- {% extends "base.html" %}
+<!-- templates/post_edit.html -->
+{% extends "base.html" %}
 
- {% block content %}
- <h1>Edit post</h1>
- <form action="" method="post">{% csrf_token %}
-    {{ form.as_p}}
-    <input type="submit" value="Update">
- </form>
- {% endblock content %}
+{% block title %}Chỉnh sửa bài viết | Hien Cao Blog{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="auth-container" style="max-width: 680px;">
+    <div class="form-card">
+      <div class="form-card__header">
+        <div class="form-card__icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+        </div>
+        <h2 class="form-card__title">Chỉnh sửa bài viết</h2>
+        <p class="form-card__subtitle">
+          Cập nhật tiêu đề hoặc nội dung bài viết kỹ thuật.
+        </p>
+      </div>
+
+      <form action="" method="post" class="django-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <button type="submit" class="btn btn--primary btn--lg" style="flex: 1;">
+            Lưu thay đổi
+          </button>
+          <a href="{% url 'home' %}#blog" class="btn btn--outline btn--lg">
+            Hủy bỏ
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

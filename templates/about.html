@@ -1,0 +1,106 @@
+<!-- templates/about.html -->
+{% extends "base.html" %}
+
+{% block title %}Giới thiệu bản thân | Hien Cao Portfolio{% endblock title %}
+
+{% block content %}
+<section class="hero" style="padding: 3.5rem 0 3rem;">
+  <div class="container hero__inner">
+    <div class="hero__status-pill">
+      <span class="hero__status-dot"></span>
+      <span>Về tôi &amp; Triết lý phát triển</span>
+    </div>
+    <h1 class="hero__title">Trang Giới Thiệu Bản Thân</h1>
+    <p class="hero__subtitle">
+      Khám phá kỹ năng chuyên môn, kinh nghiệm thực chiến và đam mê lập trình của Hien Cao.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Profile Card -->
+      <div class="profile-card">
+        <div class="profile-avatar">
+          {% if user.is_authenticated %}
+            {{ user.username|slice:":1"|upper }}
+          {% else %}
+            HC
+          {% endif %}
+        </div>
+        <h3 class="profile-name">Hien Cao</h3>
+        <div class="profile-role">Full-Stack Web Developer</div>
+        
+        <div class="profile-status">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#48bb78;"></span>
+          Sẵn sàng hợp tác dự án mới
+        </div>
+
+        <div class="profile-meta">
+          <div class="profile-meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Việt Nam
+          </div>
+          <div class="profile-meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            caobaohien@example.com
+          </div>
+          <div class="profile-meta-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            github.com/caobaohien
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <a href="{% url 'home' %}" class="btn btn--outline btn--sm" style="width: 100%;">
+            &larr; Về Trang chủ Portfolio
+          </a>
+        </div>
+      </div>
+
+      <!-- Detail Story -->
+      <div class="about-content">
+        <h2 style="font-size: 1.85rem; font-weight: 800; margin-bottom: 1.25rem; color: var(--text-primary);">
+          Chào bạn, tôi là Hien Cao! 👋
+        </h2>
+        
+        <div class="about-bio">
+          <p style="margin-bottom: 1.25rem;">
+            Tôi là một kỹ sư phần mềm tập trung vào phát triển ứng dụng web hiện đại. Điểm mạnh của tôi nằm ở khả năng xây dựng các hệ thống quản lý dữ liệu chặt chẽ bằng <strong>Python &amp; Django</strong>, thiết kế cơ sở dữ liệu quan hệ và xây dựng giao diện người dùng mượt mà, thân thiện.
+          </p>
+          <p style="margin-bottom: 1.25rem;">
+            Dự án này là minh chứng cho sự kết hợp giữa kiến trúc backend chuẩn chỉ của Django (tham khảo từ <em>Django for Beginners</em>) và ngôn ngữ thiết kế giao diện tinh tế từ <em>React Flowstate / Docusaurus</em>.
+          </p>
+          <p>
+            Dù làm việc độc lập hay theo nhóm, tôi luôn đặt tính kỷ luật, khả năng mở rộng của mã nguồn (clean code) và trải nghiệm của người dùng lên hàng đầu.
+          </p>
+        </div>
+
+        <div class="skills-group">
+          <div class="skills-group__title">Hệ sinh thái công nghệ sử dụng</div>
+          <div class="skills-tags">
+            <span class="skill-tag skill-tag--primary">Python</span>
+            <span class="skill-tag skill-tag--primary">Django 4.0</span>
+            <span class="skill-tag">SQLite / PostgreSQL</span>
+            <span class="skill-tag">HTML5 / CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Docusaurus UI</span>
+            <span class="skill-tag">Git / GitHub</span>
+            <span class="skill-tag">WhiteNoise</span>
+            <span class="skill-tag">Render / Railway</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

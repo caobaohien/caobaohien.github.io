@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -27,4 +27,7 @@ class BlogDeleteView(DeleteView):
     model = Post
     template_name = "post_delete.html"
     success_url = reverse_lazy("home")
-# Create your views here.
+
+class AboutPageView(TemplateView):
+    template_name = "about.html"
+

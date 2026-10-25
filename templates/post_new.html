@@ -1,9 +1,39 @@
+<!-- templates/post_new.html -->
 {% extends "base.html" %}
 
+{% block title %}Tạo bài viết mới | Hien Cao Blog{% endblock title %}
+
 {% block content %}
-<h1>New Post</h1>
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+<div class="container">
+  <div class="auth-container" style="max-width: 680px;">
+    <div class="form-card">
+      <div class="form-card__header">
+        <div class="form-card__icon">
+          <svg viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </div>
+        <h2 class="form-card__title">Tạo bài viết mới</h2>
+        <p class="form-card__subtitle">
+          Chia sẻ kiến thức, dự án mới hoặc ghi chú kỹ thuật lên blog cá nhân.
+        </p>
+      </div>
+
+      <form action="" method="post" class="django-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <button type="submit" class="btn btn--primary btn--lg" style="flex: 1;">
+            Xuất bản bài viết
+          </button>
+          <a href="{% url 'home' %}#blog" class="btn btn--outline btn--lg">
+            Hủy bỏ
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock content %}
