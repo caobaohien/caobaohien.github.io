@@ -74,13 +74,23 @@ GitHub Pages là dịch vụ lưu trữ web tĩnh (HTML/CSS/JS). Vì vậy, dự
 
 ---
 
-## ☁️ 4. Deploy Django Backend lên Cloud miễn phí (Render / Railway)
+## ☁️ 4. Deploy Django Backend lên Render (Render.com)
 
-Nếu bạn muốn trang web Django động (có cơ sở dữ liệu thực, đăng ký/đăng nhập thực) hoạt động online miễn phí:
+Nếu bạn muốn trang web Django động (có cơ sở dữ liệu thực, đăng ký/đăng nhập thực) hoạt động online:
 1. Đăng ký tài khoản tại [Render.com](https://render.com/).
-2. Chọn **New Web Service** -> Kết nối với repo `caobaohien/blog-app`.
-3. Cấu hình:
-   - **Environment**: Python 3
+2. Chọn **New Web Service** -> Kết nối với repo GitHub của bạn (`caobaohien/blog-app` hoặc `caobaohien/caobaohien.github.io`).
+3. Cấu hình cơ bản:
+   - **Name**: Đặt tên ứng dụng (ví dụ: `hien-portfolio`)
+   - **Region**: Singapore (gần Việt Nam nhất)
+   - **Branch**: `master`
+   - **Environment**: `Python 3`
    - **Build Command**: `pip install -r requirement.txt && python manage.py collectstatic --no-input && python manage.py migrate`
    - **Start Command**: `gunicorn django_project.wsgi:application`
-4. Dự án đã có sẵn `Procfile` và cấu hình `WhiteNoise` trong `settings.py`, Render sẽ tự động triển khai thành công!
+4. **Cấu hình Python Version (RẤT QUAN TRỌNG)**:
+   - Dự án sử dụng **Django 4.0.10**. Mặc định hiện tại Render có thể kéo phiên bản Python 3.14+, trong khi Python 3.13+ đã loại bỏ thư viện chuẩn `cgi` dẫn đến lỗi `ModuleNotFoundError: No module named 'cgi'`.
+   - Dự án đã được tạo sẵn file [`.python-version`](file:///d:/code/blog/.python-version) và [`runtime.txt`](file:///d:/code/blog/runtime.txt) cố định phiên bản **`3.10.14`**.
+   - Tại mục **Environment Variables** trên Render, bạn cũng có thể thêm biến:
+     - Key: `PYTHON_VERSION`
+     - Value: `3.10.14`
+5. Nhấn **Create Web Service** (hoặc nếu đã tạo rồi thì vào mục **Manual Deploy** -> chọn **Clear build cache & deploy**).
+6. Ứng dụng sẽ build thành công và chạy ổn định tại domain `https://<ten-app>.onrender.com`.
